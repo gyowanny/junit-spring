@@ -29,8 +29,10 @@ public class ReportsAPI extends AbstractReportAPI{
     }
     
     @RequestMapping(value = "/extrato/{id}/{type}", method = RequestMethod.GET)
-    public void extrato(@PathVariable("id") Long contaId, @PathVariable("type") ReportType type, 
-            HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void extrato(@PathVariable("id") Long contaId, 
+            @PathVariable("type") ReportType type, 
+            HttpServletRequest request, 
+            HttpServletResponse response) throws Exception {
         ContaCorrente cc = gerenciadorAgenciaService.findContaCorrenteById(contaId);
         generateAndExportReport("extrato.jasper", gerenciadorAgenciaService.getExtrato(cc), 
                 null, request, response, type);
