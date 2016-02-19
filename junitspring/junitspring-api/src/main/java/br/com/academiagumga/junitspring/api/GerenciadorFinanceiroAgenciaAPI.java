@@ -22,10 +22,11 @@ public class GerenciadorFinanceiroAgenciaAPI {
     public ResponseEntity<String> depositar(@RequestBody DepositoVO vo) {
         ResponseEntity<String> response;
         try {
-            System.out.println(">>> Deposito!!!!");
-            ContaCorrente cc = agenciaService.findContaCorrenteByNumero(vo.getNumeroConta());
+            ContaCorrente cc = 
+                    agenciaService.findContaCorrenteByNumero(vo.getNumeroConta());
             agenciaService.depositar(cc, vo.getValor());
-            response = new ResponseEntity<>("Deposito efetuado com sucesso!", HttpStatus.OK);
+            response = new ResponseEntity<>("Deposito efetuado com sucesso!", 
+                    HttpStatus.OK);
         } catch (Exception ex) {
             response = new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }

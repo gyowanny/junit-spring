@@ -22,23 +22,23 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
 @WebAppConfiguration
-public abstract class AbstractWebTestCase{
-    
+public abstract class AbstractWebTestCase {
+
     @Autowired
     private WebApplicationContext wac;
 
     protected MockMvc mockMvc;
-    
+
     public void buildMockMvc() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
-    protected String toJSONString(Object obj) throws JsonProcessingException{
+    protected String toJSONString(Object obj) throws JsonProcessingException {
         final ObjectMapper mapper = new ObjectMapper();
         final String jsonContent = mapper.writeValueAsString(obj);
         return jsonContent;
     }
-    
+
     @Before
     public void setUp() {
         before();

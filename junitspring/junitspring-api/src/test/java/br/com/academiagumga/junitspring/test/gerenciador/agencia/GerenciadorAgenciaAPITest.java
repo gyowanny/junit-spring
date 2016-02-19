@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import org.springframework.web.client.RestTemplate;
 
 public class GerenciadorAgenciaAPITest extends AbstractWebTestCase{
 
@@ -44,18 +43,16 @@ public class GerenciadorAgenciaAPITest extends AbstractWebTestCase{
     public void testDepositarComSucesso() throws Exception{
         DepositoVO vo = new DepositoVO(conta.getNumero(), new Double(100.0));
         String json = toJSONString(vo);
-        System.out.println(">>> JSON: "+json);
         mockMvc.perform(post("/api/agencia/depositar")
-//            .header("gumgaToken", "eterno")
             .content(json)
             .contentType(MediaType.parseMediaType("application/json;charset=UTF-8")))
-//            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
             .andExpect(status().isOk());
         
         List<Transacao> extrato = agenciaService.getExtrato(conta);
         assertFalse("Nenhuma transacao gerada!", extrato.isEmpty());
         extrato.stream()
-                .forEach(t -> System.out.println(t.getData()+" "+t.getDescricao()+" "+t.getValor()));
+           .forEach(
+           t -> System.out.println(t.getData()+" "+t.getDescricao()+" "+t.getValor()));
     }
     
     private void criarContaCorrente() {
