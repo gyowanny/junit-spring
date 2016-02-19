@@ -5,10 +5,12 @@
  */
 package br.com.academiagumga.junitspring.application.service;
 
+import br.com.academiagumga.junitspring.application.exception.ContaCorrenteNaoEncontradaException;
 import br.com.academiagumga.junitspring.application.exception.ExtratoException;
 import br.com.academiagumga.junitspring.application.exception.TransacaoException;
 import br.com.academiagumga.junitspring.domain.model.ContaCorrente;
 import br.com.academiagumga.junitspring.domain.model.Transacao;
+import com.sun.corba.se.impl.ior.ObjectReferenceFactoryImpl;
 import gumga.framework.domain.domains.GumgaBoolean;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class GerenciadorFinanceiroAgenciaService
-        extends GerenciadorFinanceiroService {
+        extends AbstractGerenciadorFinanceiroService {
 
     @Autowired
     private ContaCorrenteService contaService;
@@ -25,6 +27,7 @@ public class GerenciadorFinanceiroAgenciaService
     @Transactional
     @Override
     public void depositar(ContaCorrente conta, Double valor) throws TransacaoException {
+        System.out.println(">>> Deposito!!!!");
         registrarTransacao(conta, valor, "Depósito agência");
     }
 
@@ -66,4 +69,7 @@ public class GerenciadorFinanceiroAgenciaService
         registrarTransacao(conta, new Double(0), "Conta encerrada.");
     }
 
+    public ContaCorrente findContaCorrenteByNumero(String numero) throws ContaCorrenteNaoEncontradaException {
+        return contaService.findByNumero(numero);
+    }
 }

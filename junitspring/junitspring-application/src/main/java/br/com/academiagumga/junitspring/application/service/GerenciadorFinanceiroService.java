@@ -10,32 +10,22 @@ import br.com.academiagumga.junitspring.application.exception.TransacaoException
 import br.com.academiagumga.junitspring.domain.model.ContaCorrente;
 import br.com.academiagumga.junitspring.domain.model.Transacao;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class GerenciadorFinanceiroService {
+/**
+ *
+ * @author gyowannyqueiroz
+ */
+public interface GerenciadorFinanceiroService {
+    public void depositar(ContaCorrente conta, Double valor) throws TransacaoException;
     
-    @Autowired
-    protected TransacaoService transacaoService;
+    public void sacar(ContaCorrente conta, Double valor) throws TransacaoException;
     
-    protected void registrarTransacao(ContaCorrente conta, Double valor, String descricao)
-            throws TransacaoException {
-        Transacao t = new Transacao();
-        t.setDescricao(descricao);
-        t.setValor(valor);
-        t.setTransacaoConta(conta);
-        transacaoService.save(t);
-    }
+    public void emprestar(ContaCorrente conta, Double valor) throws TransacaoException;
     
-    public abstract void depositar(ContaCorrente conta, Double valor) throws TransacaoException;
+    public Double getSaldo(ContaCorrente conta) throws ExtratoException;
     
-    public abstract void sacar(ContaCorrente conta, Double valor) throws TransacaoException;
+    public List<Transacao> getExtrato(ContaCorrente conta) throws ExtratoException;
     
-    public abstract void emprestar(ContaCorrente conta, Double valor) throws TransacaoException;
-    
-    public abstract Double getSaldo(ContaCorrente conta) throws ExtratoException;
-    
-    public abstract List<Transacao> getExtrato(ContaCorrente conta) throws ExtratoException;
-    
-    public abstract void encerrarConta(ContaCorrente conta) throws TransacaoException;
+    public void encerrarConta(ContaCorrente conta) throws TransacaoException;
     
 }

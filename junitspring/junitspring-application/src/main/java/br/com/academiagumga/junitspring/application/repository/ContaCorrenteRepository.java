@@ -5,5 +5,6 @@ import br.com.academiagumga.junitspring.domain.model.ContaCorrente;
 
 public interface ContaCorrenteRepository extends GumgaCrudRepository<ContaCorrente, Long> {
 
+    public ContaCorrente findOneByNumero(String numero);
 }
 

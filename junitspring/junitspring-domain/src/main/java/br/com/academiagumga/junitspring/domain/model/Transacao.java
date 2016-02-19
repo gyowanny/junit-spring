@@ -7,17 +7,10 @@ package br.com.academiagumga.junitspring.domain.model;
 
 import gumga.framework.domain.GumgaModel;
 import gumga.framework.domain.GumgaMultitenancy;
-import java.io.Serializable;
 import java.util.*;
-import java.math.BigDecimal;
 import javax.persistence.*;
-import javax.validation.constraints.*;
-import gumga.framework.domain.domains.*;
-import org.hibernate.annotations.Columns;
-import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.envers.Audited;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @GumgaMultitenancy
 @SequenceGenerator(name = GumgaModel.SEQ_NAME, sequenceName = "SEQ_TRANSACAO")
@@ -29,7 +22,7 @@ public class Transacao extends GumgaModel<Long> {
     @Version
     private Integer version;
     //@Field //Descomente para ser utilizado na busca multientidades
-    private Date data;
+    private Date data = new Date();
     //@Field //Descomente para ser utilizado na busca multientidades
     private double valor;
     //@Field //Descomente para ser utilizado na busca multientidades
