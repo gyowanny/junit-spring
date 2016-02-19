@@ -1,0 +1,33 @@
+<form name="ContaCorrenteForm" gumga-form novalidate>
+
+    <div gumga-form-class="titular">
+        <label gumga-translate-tag="contacorrente.titular">titular</label>
+        <input gumga-error type="text" name="titular" ng-model="contacorrente.data.titular"  class="form-control" />
+    </div>
+
+    <div gumga-form-class="numero">
+        <label gumga-translate-tag="contacorrente.numero">numero</label>
+        <input gumga-error type="text" name="numero" ng-model="contacorrente.data.numero"  class="form-control" />
+    </div>
+
+    <div gumga-form-class="limite">
+        <label gumga-translate-tag="contacorrente.limite">limite</label>
+        <input gumga-error type="text" name="limite" ng-model="contacorrente.data.limite"  class="form-control" />
+    </div>
+
+        <div gumga-form-class="encerrada">
+            <label gumga-translate-tag="contacorrente.encerrada">encerrada</label>
+            <input style="width:15px" gumga-error type="checkbox"  name="encerrada" ng-model="contacorrente.data.encerrada.value" class="form-control" />
+        </div>
+
+
+    <gumga-errors label="Lista de erros" title="Lista de erros"></gumga-errors>
+    <gumga-form-buttons
+            back="contacorrente.list"
+            submit="contacorrente.methods.put(contacorrente.data)"
+            position="right"
+            valid="ContaCorrenteForm.$valid"
+            confirm-dirty="true"
+            continue="continue">
+    </gumga-form-buttons>
+</form>

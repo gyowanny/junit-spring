@@ -1,0 +1,45 @@
+<div class="col-md-5" style="padding-left: 0">
+  <a ui-sref="transacao.insert" class="btn btn-primary">
+    <i class="glyphicon glyphicon-plus"></i>
+    Novo
+  </a>
+  <button type="button" class="btn btn-danger" ng-click="transacao.methods.delete(selectedValues)">
+    <i class="glyphicon glyphicon-trash"></i>
+    Remover
+  </button>
+</div>
+<div class="col-md-7" style="padding-right: 0">
+  <gumga-search fields="data,valor,descricao,transacaoConta"
+                advanced="true"
+                get-queries="transacao.methods.getQuery(page)"
+                search-method="transacao.methods.search(field,param)"
+                advanced-method="transacao.methods.advancedSearch(param)"
+                translate-entity="transacao">
+    <advanced-field name="id" type="string"></advanced-field>
+    <advanced-field name="data" type="date"></advanced-field>
+    <advanced-field name="valor" type="string"></advanced-field>
+    <advanced-field name="descricao" type="string"></advanced-field>
+    <advanced-field name="transacaoConta" type="string"></advanced-field>
+  </gumga-search>
+</div>
+
+<div class="full-width-without-padding">
+    <gumga-list sort="transacao.methods.sort(field, dir)"
+            class="table-striped table-condensed"
+            data="transacao.data"
+            configuration="tableConfig">
+    </gumga-list>
+</div>
+
+<pagination ng-model="page"
+max-size="10"
+boundary-links="true"
+previous-text="‹"
+next-Text="›"
+first-text="«"
+last-text="»"
+items-per-page="transacao.pageSize"
+total-items="transacao.count"
+ng-change="transacao.methods.get(page)
+">
+</pagination>

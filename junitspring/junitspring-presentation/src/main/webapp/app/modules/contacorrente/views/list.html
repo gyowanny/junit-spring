@@ -1,0 +1,45 @@
+<div class="col-md-5" style="padding-left: 0">
+  <a ui-sref="contacorrente.insert" class="btn btn-primary">
+    <i class="glyphicon glyphicon-plus"></i>
+    Novo
+  </a>
+  <button type="button" class="btn btn-danger" ng-click="contacorrente.methods.delete(selectedValues)">
+    <i class="glyphicon glyphicon-trash"></i>
+    Remover
+  </button>
+</div>
+<div class="col-md-7" style="padding-right: 0">
+  <gumga-search fields="titular,numero,limite,encerrada"
+                advanced="true"
+                get-queries="contacorrente.methods.getQuery(page)"
+                search-method="contacorrente.methods.search(field,param)"
+                advanced-method="contacorrente.methods.advancedSearch(param)"
+                translate-entity="contacorrente">
+    <advanced-field name="id" type="string"></advanced-field>
+    <advanced-field name="titular" type="string"></advanced-field>
+    <advanced-field name="numero" type="string"></advanced-field>
+    <advanced-field name="limite" type="string"></advanced-field>
+    <advanced-field name="encerrada" type="boolean"></advanced-field>
+  </gumga-search>
+</div>
+
+<div class="full-width-without-padding">
+    <gumga-list sort="contacorrente.methods.sort(field, dir)"
+            class="table-striped table-condensed"
+            data="contacorrente.data"
+            configuration="tableConfig">
+    </gumga-list>
+</div>
+
+<pagination ng-model="page"
+max-size="10"
+boundary-links="true"
+previous-text="‹"
+next-Text="›"
+first-text="«"
+last-text="»"
+items-per-page="contacorrente.pageSize"
+total-items="contacorrente.count"
+ng-change="contacorrente.methods.get(page)
+">
+</pagination>

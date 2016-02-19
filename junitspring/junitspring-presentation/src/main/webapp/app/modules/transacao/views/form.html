@@ -1,0 +1,39 @@
+<form name="TransacaoForm" gumga-form novalidate>
+
+        <div gumga-form-class="data">
+            <label gumga-translate-tag="transacao.data">data</label>
+            <input type="text" name="data" class="form-control"  datepicker-popup="fullDate" ng-model="transacao.data.data" is-open="openedData" ng-click="openedData= !openedData" close-text="Close" />
+        </div>
+
+    <div gumga-form-class="valor">
+        <label gumga-translate-tag="transacao.valor">valor</label>
+        <input gumga-error type="text" name="valor" ng-model="transacao.data.valor"  class="form-control" />
+    </div>
+
+    <div gumga-form-class="descricao">
+        <label gumga-translate-tag="transacao.descricao">descricao</label>
+        <input gumga-error type="text" name="descricao" ng-model="transacao.data.descricao"  class="form-control" />
+    </div>
+
+        <div gumga-form-class="transacaoConta">
+            <label gumga-translate-tag="transacao.transacaoConta">transacaoConta</label>
+            <gumga-many-to-one
+                input-name="transacaoConta"
+                value="transacao.data.transacaoConta"
+                search-method="contacorrente.methods.asyncSearch('titular',param)"
+                field="titular"
+                authorize-add="true"
+                add-method="contacorrente.methods.asyncPost(value,'titular')">
+            </gumga-many-to-one>
+        </div>
+
+    <gumga-errors label="Lista de erros" title="Lista de erros"></gumga-errors>
+    <gumga-form-buttons
+            back="transacao.list"
+            submit="transacao.methods.put(transacao.data)"
+            position="right"
+            valid="TransacaoForm.$valid"
+            confirm-dirty="true"
+            continue="continue">
+    </gumga-form-buttons>
+</form>
