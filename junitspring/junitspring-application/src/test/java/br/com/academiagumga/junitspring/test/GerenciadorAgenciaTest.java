@@ -39,12 +39,12 @@ public class GerenciadorAgenciaTest extends AbstractTestCase{
     }
     
     @Test
-    public void testDepositar(){
-        ContaCorrente cc = criarContaCorrente();
+    public void testDepositarComSucesso(){
         try {
+            ContaCorrente cc = criarContaCorrente();
             service.depositar(cc, new Double(100));
         } catch (TransacaoException ex) {
-            Assert.fail();
+            Assert.fail(ex.getMessage());
         }
     }
     
