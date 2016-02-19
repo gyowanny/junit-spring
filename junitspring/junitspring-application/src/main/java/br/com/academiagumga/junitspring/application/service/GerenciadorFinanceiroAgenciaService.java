@@ -77,7 +77,4 @@ public class GerenciadorFinanceiroAgenciaService
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public ContaCorrente findContaCorrenteById(Long contaId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
